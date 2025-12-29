@@ -16,6 +16,7 @@ from typing import Optional
 
 try:
     from robot_control.rm_robot_interface import *
+    from robot_control.electronic_fence_setup import setup_electronic_fence, disable_electronic_fence
 except ImportError:
     print("ERROR: Realman SDK not found")
     RoboticArm = None
@@ -32,6 +33,7 @@ class GEN72RobotNode:
         self.last_cmd_time = time.time()
         self.cmd_timeout = 0.2
         self.target_q = None
+        self.fence_enabled = False
 
         self.connect()
 
@@ -55,6 +57,25 @@ class GEN72RobotNode:
             time.sleep(0.5)
 
             self.update_joint_state()
+
+            # Ensure current_joints is initialized (fallback to HOME if read fails)
+            if self.current_joints is None:
+                print("[GEN72] Warning: Failed to read initial joint state, using HOME position")
+                self.current_joints = np.array([0.0, -0.5, 0.0, 0.0, 0.0, 0.5, 0.0], dtype=np.float32)
+
+            # Setup electronic fence (non-critical, continue if fails)
+            try:
+                print("[GEN72] Setting up electronic fence...")
+                self.fence_enabled = setup_electronic_fence(self.robot)
+                if self.fence_enabled:
+                    print("[GEN72] Electronic fence active: robot cannot move behind Y = -0.5m")
+                else:
+                    print("[GEN72] Warning: Electronic fence setup failed, continuing without fence")
+            except Exception as fence_error:
+                print(f"[GEN72] Warning: Electronic fence error: {fence_error}")
+                print("[GEN72] Continuing without electronic fence")
+                self.fence_enabled = False
+
             return True
 
         except Exception as e:
@@ -74,6 +95,7 @@ class GEN72RobotNode:
                     self.current_joints = np.deg2rad(np.array(joint_data.joint[:7], dtype=np.float32))
         except Exception as e:
             print(f"Error reading joints: {e}")
+            # Keep previous value if read fails
 
     def apply_control(self, command: np.ndarray):
         """Send joint command to robot"""
@@ -85,7 +107,7 @@ class GEN72RobotNode:
 
         try:
             joint_deg = np.rad2deg(command[:self.num_joints]).tolist()
-            self.robot.rm_movej(joint_deg, 10, 0, 0, 1)
+            self.robot.rm_movej(joint_deg, 30, 0, 0, 0)  # block=0 非阻塞
         except Exception as e:
             print(f"Error sending command: {e}")
 
@@ -103,6 +125,11 @@ class GEN72RobotNode:
     def disconnect(self):
         """Disconnect from robot"""
         if self.robot:
+            # Disable electronic fence before disconnecting
+            if self.fence_enabled:
+                print("[GEN72] Disabling electronic fence...")
+                disable_electronic_fence(self.robot)
+
             self.robot.rm_delete_robot_arm()
             print("Disconnected from GEN72")
 

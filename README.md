@@ -6,6 +6,12 @@ Project Effect Showcase：https://raw.githubusercontent.com/bobd988/dora-moveit/
 
 This system enables automated multi-viewpoint photography for pipeline inspection tasks. The robot arm moves to predefined viewpoints, captures images, and returns to home position - all with collision-free motion planning.
 
+**Two Independent Workflows:**
+- **Simulation Mode** (`run_mujoco.bat`): Uses MuJoCo physics simulator for testing and development
+- **Real Robot Mode** (`run_real_robot.bat`): Controls physical GEN72 robot arm via Realman SDK
+
+Both workflows share the same planning, IK, and trajectory execution logic but use different robot control nodes.
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    GEN72 System Architecture                     │
@@ -23,21 +29,25 @@ This system enables automated multi-viewpoint photography for pipeline inspectio
 │       ├──► trajectory_executor.py (Interpolation)              │
 │       │         └──► Smooth waypoint interpolation             │
 │       │                                                          │
-│       └──► Robot Control Node                                   │
-│             ├──► MuJoCo Simulator (main.py)                    │
-│             └──► Real GEN72 Robot (gen72_robot_node.py)        │
+│       └──► Robot Control Node (Mode-Specific)                   │
+│             ├──► Simulation: dora-mujoco (MuJoCo Simulator)    │
+│             └──► Real Robot: gen72_robot_node.py (Realman SDK) │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Key Features
 
-- **Dual Mode Operation**: MuJoCo simulation + Real GEN72 robot support
+- **Independent Dual Workflows**:
+  - Simulation mode uses MuJoCo physics engine (no real robot dependencies)
+  - Real robot mode uses Realman SDK (no MuJoCo dependencies)
+  - Both share the same planning and control logic
 - **Advanced IK**: TracIK solver with ~95% success rate
 - **Collision Detection**:
   - Geometric collision (spheres, boxes, cylinders)
   - 3D LiDAR point cloud integration (ready, disabled by default)
   - Realman SDK collision detection framework
+- **Electronic Fence**: Prevents robot from moving behind its base (Y < -0.5m)
 - **Multi-View Capture**: Automated 3-viewpoint photography workflow
 - **Smooth Motion**: Trajectory interpolation with configurable speed
 - **HOLD Logic**: Prevents control drift after motion completion
@@ -64,15 +74,17 @@ pip install -e dora-mujoco/
 
 ### Running Simulation
 
-```bash
-# Start MuJoCo simulation
-./run_mujoco.bat
+**Launch MuJoCo simulation mode:**
 
-# Or manually:
-dora up
-dora build dataflow_gen72_mujoco.yml
-dora start dataflow_gen72_mujoco.yml
+```bash
+./run_mujoco.bat
 ```
+
+This will:
+1. Start Dora daemon
+2. Build and start `config/dataflow_gen72_mujoco.yml`
+3. Launch MuJoCo simulator node (`dora-mujoco`)
+4. Execute multi-view capture workflow in simulation
 
 **What you'll see**:
 1. MuJoCo window opens with GEN72 robot at HOME position
@@ -80,19 +92,33 @@ dora start dataflow_gen72_mujoco.yml
 3. Robot captures images at each viewpoint
 4. Returns to HOME and enters idle state
 
+**Files used in simulation mode:**
+- `config/dataflow_gen72_mujoco.yml` - Dataflow configuration
+- `dora-mujoco/dora_mujoco/main.py` - MuJoCo simulator
+- Shared: workflow, IK, planning, trajectory execution nodes
+
 ### Running Real Robot
 
 **IMPORTANT**: Ensure robot is powered on, workspace is clear, and emergency stop is accessible.
 
-```bash
-# Start real robot control
-./run_real_robot.bat
+**Launch real robot control mode:**
 
-# Or manually:
-dora up
-dora build dataflow_gen72_real.yml
-dora start dataflow_gen72_real.yml
+```bash
+./run_real_robot.bat
 ```
+
+This will:
+1. Display safety warnings and wait for confirmation
+2. Start Dora daemon
+3. Build and start `config/dataflow_gen72_real.yml`
+4. Connect to physical GEN72 robot at 192.168.1.18
+5. Execute multi-view capture workflow on real robot
+
+**Files used in real robot mode:**
+- `config/dataflow_gen72_real.yml` - Dataflow configuration
+- `robot_control/gen72_robot_node.py` - Real robot control
+- `robot_control/rm_robot_interface.py` - Realman SDK interface
+- Shared: workflow, IK, planning, trajectory execution nodes
 
 ## System Configuration
 
@@ -129,26 +155,55 @@ dora-moveit/
 ├── run_mujoco.bat                    # Launch MuJoCo simulation
 ├── run_real_robot.bat                # Launch real robot control
 │
-├── dataflow_gen72_mujoco.yml         # MuJoCo dataflow config
-├── dataflow_gen72_real.yml           # Real robot dataflow config
+├── config/
+│   ├── dataflow_gen72_mujoco.yml    # Simulation dataflow config
+│   ├── dataflow_gen72_real.yml      # Real robot dataflow config
+│   ├── robot_config.py              # GEN72 parameters & collision geometry
+│   └── GEN72_base.xml               # MuJoCo model file
 │
-├── multi_view_capture_node.py        # Main workflow controller
-├── trajectory_executor.py            # Trajectory interpolation
-├── ik_op.py                          # TracIK inverse kinematics
-├── planner_ompl_with_collision_op.py # RRT-Connect motion planner
-├── planning_scene_op.py              # Scene management
+├── workflow/                         # Shared workflow logic
+│   ├── multi_view_capture_node.py   # Main workflow controller
+│   └── motion_commander.py          # Motion command interface
 │
-├── gen72_robot_node.py               # Real robot control (Realman SDK)
-├── robot_config.py                   # GEN72 parameters & collision geometry
+├── ik_solver/                        # Shared IK solver
+│   ├── ik_op.py                     # TracIK inverse kinematics
+│   └── advanced_ik_solver.py        # Advanced IK implementations
 │
-├── rm_robot_interface.py             # Realman SDK interface
-├── rm_ctypes_wrap.py                 # Realman SDK C wrapper
-├── api_c.dll                         # Realman SDK library
+├── motion_planner/                   # Shared motion planning
+│   ├── planner_ompl_with_collision_op.py  # RRT-Connect planner
+│   └── planning_scene_op.py         # Scene management
+│
+├── trajectory_execution/             # Shared trajectory execution
+│   └── trajectory_executor.py       # Trajectory interpolation
+│
+├── collision_detection/              # Shared collision detection
+│   ├── collision_lib.py             # Core collision checking
+│   ├── collision_check_op.py        # Collision check operator
+│   └── pointcloud_collision.py      # Point cloud integration
+│
+├── robot_control/                    # Real robot specific (not used in simulation)
+│   ├── gen72_robot_node.py          # Real robot control node
+│   ├── rm_robot_interface.py        # Realman SDK interface
+│   ├── rm_ctypes_wrap.py            # Realman SDK C wrapper
+│   └── api_c.dll                    # Realman SDK library
+│
+├── utils/                            # Utilities
+│   ├── create_scene_with_obstacles.py  # URDF to MuJoCo converter
+│   └── visualize_scene.py           # MuJoCo visualization tool
+│
+├── dora-mujoco/                      # MuJoCo simulation (not used with real robot)
+│   └── dora_mujoco/
+│       └── main.py                  # MuJoCo simulator node
 │
 ├── requirements.txt                  # Python dependencies
 ├── README.md                         # This file
 └── RELEASE.md                        # Version history
 ```
+
+**Workflow Separation:**
+- **Simulation only**: `dora-mujoco/`, `utils/visualize_scene.py`, `utils/create_scene_with_obstacles.py`
+- **Real robot only**: `robot_control/` directory
+- **Shared by both**: `workflow/`, `ik_solver/`, `motion_planner/`, `trajectory_execution/`, `collision_detection/`, `config/`
 
 ## Component Details
 
@@ -380,6 +435,33 @@ joint_data = result[1]  # Tuple unpacking
 - Ground plane at z=-0.05m
 - Self-collision checking enabled
 - Adjacent links (±1) skipped for flexibility
+
+### Electronic Fence (Real Robot Only)
+
+The real robot automatically enables an electronic fence on startup to prevent unsafe movements:
+
+- **Boundary**: Robot cannot move behind Y = -0.5m (0.5 meters behind base)
+- **Coordinate System**: Base frame (robot base at origin)
+- **Coverage**: Full workspace except behind the robot
+- **Automatic**: Enabled on connection, disabled on disconnect
+
+**Testing the fence:**
+```bash
+python test_electronic_fence.py
+```
+
+**Manual control:**
+```python
+from robot_control.electronic_fence_setup import setup_electronic_fence, disable_electronic_fence
+
+# Enable fence
+setup_electronic_fence(robot)
+
+# Disable fence (use with caution)
+disable_electronic_fence(robot)
+```
+
+**Note**: The electronic fence is implemented using Realman SDK's built-in safety features and operates at the controller level, providing hardware-level protection.
 
 ## Development
 

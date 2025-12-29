@@ -9,7 +9,7 @@ nodes:
   - id: gen72_robot
     path: ../robot_control/gen72_robot_node.py
     inputs:
-      tick: dora/timer/millis/200                # 20 Hz update rate
+      tick: dora/timer/millis/150                # 10 Hz update rate
       control_input: trajectory_executor/joint_commands
     outputs:
       - joint_positions
