@@ -1,0 +1,93 @@
+# LM3 Real Robot Multi-View Capture
+# ====================================
+# Uses physical LM3 robot instead of MuJoCo simulation
+
+nodes:
+  # ===========================================
+  # LM3 Real Robot Control
+  # ===========================================
+  - id: lm3_robot
+    path: ../robot_control/lm3_robot_node.py
+    inputs:
+      tick: dora/timer/millis/150                # ~7 Hz update rate
+      joint_command: trajectory_executor/joint_commands
+    outputs:
+      - joint_positions
+    env:
+      LEBAI_IP: "192.168.1.200"
+
+  # ===========================================
+  # Planning Scene Manager
+  # ===========================================
+  - id: planning_scene
+    path: ../motion_planner/planning_scene_op.py
+    inputs:
+      robot_state: lm3_robot/joint_positions
+      scene_command: capture/scene_command
+      tick: dora/timer/millis/20000
+    outputs:
+      - scene_update
+      - command_result
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # OMPL Motion Planner
+  # ===========================================
+  - id: planner
+    path: ../motion_planner/planner_ompl_with_collision_op.py
+    inputs:
+      plan_request: capture/plan_request
+      scene_update: planning_scene/scene_update
+    outputs:
+      - trajectory
+      - plan_status
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # IK Solver (LM3 6-DOF)
+  # ===========================================
+  - id: ik_solver
+    path: ../ik_solver/ik_op_lm3.py
+    inputs:
+      ik_request: capture/ik_request
+    outputs:
+      - ik_solution
+      - ik_status
+
+  # ===========================================
+  # Trajectory Executor
+  # ===========================================
+  - id: trajectory_executor
+    path: ../trajectory_execution/trajectory_executor.py
+    inputs:
+      trajectory: planner/trajectory
+      joint_positions: lm3_robot/joint_positions
+      tick: dora/timer/millis/200
+    outputs:
+      - joint_commands
+      - execution_status
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # Multi-View Capture Controller
+  # ===========================================
+  - id: capture
+    path: ../workflow/multi_view_capture_node.py
+    env:
+      CAPTURE_OUTPUT_DIR: "result_captures"
+      ROBOT_TYPE: "LM3"
+    inputs:
+      joint_positions: lm3_robot/joint_positions
+      execution_status: trajectory_executor/execution_status
+      trajectory: planner/trajectory
+      plan_status: planner/plan_status
+      ik_solution: ik_solver/ik_solution
+      ik_status: ik_solver/ik_status
+    outputs:
+      - robot_state
+      - plan_request
+      - ik_request
+      - scene_command

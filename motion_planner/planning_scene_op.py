@@ -392,9 +392,14 @@ class PlanningSceneOperator:
 def main():
     """Main entry point for Dora Planning Scene operator"""
     print("=== Dora-MoveIt Planning Scene Operator ===")
-    
+
+    # Detect robot type from environment
+    robot_type = os.environ.get("ROBOT_TYPE", "GEN72")
+    num_joints = 6 if robot_type == "LM3" else 7
+    print(f"Initializing planning scene for {robot_type} ({num_joints}-DOF)")
+
     node = Node()
-    scene_op = PlanningSceneOperator(num_joints=7)
+    scene_op = PlanningSceneOperator(num_joints=num_joints)
     
     # Broadcast initial scene
     print("Broadcasting initial scene state...")

@@ -1,0 +1,763 @@
+2025-12-31T05:42:15.481743Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T05:42:15.495396Z  INFO zenoh::net::runtime: Using ZID: e1426f886529b3e1aebe4bcf712b2d72
+2025-12-31T05:42:15.525454Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T05:42:15.525638Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T05:42:15.525648Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T05:42:15.525656Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T05:42:15.526483Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T05:42:15.526490Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T05:42:15.526493Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T05:42:15.526495Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T05:42:15.526498Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T05:42:15.527313Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T05:42:16.036515Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T05:42:18.686250Z  INFO dora_daemon::node_communication: channel disconnected before register message
+2025-12-31T05:48:30.445204Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 20ff4ca2-4964-4a20-b6f6-c0aeb94d2dbc }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T05:48:30.456253Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 20ff4ca2-4964-4a20-b6f6-c0aeb94d2dbc }}: dora_daemon: received destroy command -> exiting
+2025-12-31T05:48:30.457974Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T05:48:30.457998Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T05:48:30.457974Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T05:48:30.459925Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 20ff4ca2-4964-4a20-b6f6-c0aeb94d2dbc }}: zenoh::api::session: close session zid=e1426f886529b3e1aebe4bcf712b2d72
+2025-12-31T05:48:30.463563Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:48:30.463751Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:48:31.052755Z  WARN dora_daemon: process 160040 was killed on drop because it was still running
+2025-12-31T05:48:31.230343Z  WARN dora_daemon: process 17844 was killed on drop because it was still running
+2025-12-31T05:56:32.847311Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T05:56:32.848527Z  INFO zenoh::net::runtime: Using ZID: a4b3e5e18b825c8128fc984e9bed736f
+2025-12-31T05:56:32.858451Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T05:56:32.858471Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T05:56:32.858475Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T05:56:32.858478Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T05:56:32.858518Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T05:56:32.858524Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T05:56:32.858528Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T05:56:32.858531Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T05:56:32.858534Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T05:56:32.858738Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T05:56:33.360025Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T05:57:24.444805Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 12a0740d-bcd9-472a-88f1-9d9aea7f0339 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T05:57:24.456125Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 12a0740d-bcd9-472a-88f1-9d9aea7f0339 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T05:57:24.456342Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T05:57:24.456917Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 12a0740d-bcd9-472a-88f1-9d9aea7f0339 }}: zenoh::api::session: close session zid=a4b3e5e18b825c8128fc984e9bed736f
+2025-12-31T05:57:24.457021Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:57:24.457170Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:57:24.458053Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:57:24.463770Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T05:57:26.130999Z ERROR dora_daemon: failed to report ctrl-c event to dora-coordinator
+2025-12-31T05:57:28.366398Z  WARN dora_daemon: process 64276 was killed on drop because it was still running
+2025-12-31T05:59:22.324738Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T05:59:22.325949Z  INFO zenoh::net::runtime: Using ZID: d010cd7dd5f89909acb56dfe2b5fa0ec
+2025-12-31T05:59:22.335715Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T05:59:22.335735Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T05:59:22.335738Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T05:59:22.335741Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T05:59:22.335744Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T05:59:22.335746Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T05:59:22.335749Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T05:59:22.335752Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T05:59:22.335755Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T05:59:22.335942Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T05:59:22.840625Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:02:09.647149Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: dc4ba77f-dc19-4c35-b52a-5d6c168b13ce }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:02:09.658564Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: dc4ba77f-dc19-4c35-b52a-5d6c168b13ce }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:02:09.658760Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:02:09.658785Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:02:09.658795Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:02:09.658803Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:02:09.658932Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: dc4ba77f-dc19-4c35-b52a-5d6c168b13ce }}: zenoh::api::session: close session zid=d010cd7dd5f89909acb56dfe2b5fa0ec
+2025-12-31T06:02:09.664071Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:02:12.574260Z ERROR dora_daemon: failed to report ctrl-c event to dora-coordinator
+2025-12-31T06:02:12.810198Z  WARN dora_daemon: process 65252 was killed on drop because it was still running
+2025-12-31T06:02:56.999418Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:02:57.000461Z  INFO zenoh::net::runtime: Using ZID: 18cb40081f5733c17e11ff51255e9910
+2025-12-31T06:02:57.011508Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:02:57.011532Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:02:57.011537Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:02:57.011541Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:02:57.011545Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:02:57.011548Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:02:57.011551Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:02:57.011555Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:02:57.011558Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:02:57.011755Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:02:57.518004Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:04:02.634045Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 8803f8b4-fb47-438d-8b1f-45e39290c0e3 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:04:02.636069Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 8803f8b4-fb47-438d-8b1f-45e39290c0e3 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:04:02.636634Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 8803f8b4-fb47-438d-8b1f-45e39290c0e3 }}: zenoh::api::session: close session zid=18cb40081f5733c17e11ff51255e9910
+2025-12-31T06:04:02.643485Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:02.643899Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:02.644680Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:02.645121Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:02.647891Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:04.659423Z  WARN dora_daemon: process 141320 was killed on drop because it was still running
+2025-12-31T06:04:04.854726Z  WARN dora_daemon: process 152112 was killed on drop because it was still running
+2025-12-31T06:04:11.405954Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:04:11.406833Z  INFO zenoh::net::runtime: Using ZID: e21698a3397a78ab42c70ec424cb43cb
+2025-12-31T06:04:11.415290Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:04:11.415320Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:04:11.415325Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:04:11.415329Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:04:11.415334Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:04:11.415337Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:04:11.415341Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:04:11.415346Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:04:11.415349Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:04:11.415536Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:04:11.931863Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:04:27.784351Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 033f8485-1840-4317-9a87-1a0a9cc4edef }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:04:27.786745Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 033f8485-1840-4317-9a87-1a0a9cc4edef }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:04:27.787277Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 033f8485-1840-4317-9a87-1a0a9cc4edef }}: zenoh::api::session: close session zid=e21698a3397a78ab42c70ec424cb43cb
+2025-12-31T06:04:27.795046Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:27.795155Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:27.795349Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:27.795971Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:27.797713Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:04:30.200005Z ERROR dora_daemon: failed to report ctrl-c event to dora-coordinator
+2025-12-31T06:04:30.816792Z  WARN dora_daemon: process 116908 was killed on drop because it was still running
+2025-12-31T06:14:30.226537Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:14:30.227567Z  INFO zenoh::net::runtime: Using ZID: 56ccbc45a5c7a647e88df70306ae6e
+2025-12-31T06:14:30.239011Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:14:30.239057Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:14:30.239062Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:14:30.239067Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:14:30.239071Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:14:30.239075Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:14:30.239079Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:14:30.239083Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:14:30.239087Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:14:30.239368Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:14:30.748405Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:16:49.143378Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b20c6842-cca6-4516-92b0-cb2bdf14866a }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:16:49.155525Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b20c6842-cca6-4516-92b0-cb2bdf14866a }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:16:49.155926Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:16:49.155926Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:16:49.155982Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:16:49.156307Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b20c6842-cca6-4516-92b0-cb2bdf14866a }}: zenoh::api::session: close session zid=56ccbc45a5c7a647e88df70306ae6e
+2025-12-31T06:16:49.156872Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:16:49.162374Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:16:50.537943Z  WARN dora_daemon: process 94824 was killed on drop because it was still running
+2025-12-31T06:16:50.762932Z  WARN dora_daemon: process 64488 was killed on drop because it was still running
+2025-12-31T06:26:45.140168Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:26:45.140963Z  INFO zenoh::net::runtime: Using ZID: cfbfdb61458cd67b417b738ac22d83e3
+2025-12-31T06:26:45.149383Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:26:45.149409Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:26:45.149413Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:26:45.149464Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:26:45.149470Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:26:45.149473Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:26:45.149475Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:26:45.149478Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:26:45.149481Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:26:45.149647Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:26:45.664720Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:31:18.009875Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c5dde422-845f-4eba-a28b-594226533601 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:31:18.018811Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c5dde422-845f-4eba-a28b-594226533601 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:31:18.020470Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c5dde422-845f-4eba-a28b-594226533601 }}: zenoh::api::session: close session zid=cfbfdb61458cd67b417b738ac22d83e3
+2025-12-31T06:31:18.029450Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.033906Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.034057Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.038037Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.041565Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.077508Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:31:18.880099Z  WARN dora_daemon: process 106620 was killed on drop because it was still running
+2025-12-31T06:31:19.086856Z  WARN dora_daemon: process 21300 was killed on drop because it was still running
+2025-12-31T06:31:19.260712Z  WARN dora_daemon: process 61348 was killed on drop because it was still running
+2025-12-31T06:31:19.428747Z  WARN dora_daemon: process 48480 was killed on drop because it was still running
+2025-12-31T06:36:32.232976Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:36:32.251877Z  INFO zenoh::net::runtime: Using ZID: 942762046340b61920b16571b6ed9e2b
+2025-12-31T06:36:32.278114Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:36:32.278135Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:36:32.278140Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:36:32.278143Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:36:32.278146Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:36:32.278188Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:36:32.278193Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:36:32.278196Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:36:32.278199Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:36:32.278365Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:36:32.783031Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:37:23.144958Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 1fc71894-8af3-4dec-9529-dd1487485357 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:37:23.152274Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 1fc71894-8af3-4dec-9529-dd1487485357 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:37:23.154617Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 1fc71894-8af3-4dec-9529-dd1487485357 }}: zenoh::api::session: close session zid=942762046340b61920b16571b6ed9e2b
+2025-12-31T06:37:23.156721Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:37:23.157691Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:37:23.157732Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:37:23.413441Z  WARN dora_daemon: process 120016 was killed on drop because it was still running
+2025-12-31T06:37:23.626786Z  WARN dora_daemon: process 127476 was killed on drop because it was still running
+2025-12-31T06:38:55.344656Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:38:55.345456Z  INFO zenoh::net::runtime: Using ZID: a63c0a424015a78dd621a99fe1cf10e8
+2025-12-31T06:38:55.354385Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:38:55.354405Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:38:55.354408Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:38:55.354411Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:38:55.354414Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:38:55.354417Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:38:55.354419Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:38:55.354422Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:38:55.354425Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:38:55.354593Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:38:55.864452Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:39:22.522021Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: cc0256a6-d307-4dbb-b6c3-7186058db18b }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:39:22.535125Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: cc0256a6-d307-4dbb-b6c3-7186058db18b }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:39:22.535328Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:39:22.535786Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:39:22.535818Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:39:22.536472Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: cc0256a6-d307-4dbb-b6c3-7186058db18b }}: zenoh::api::session: close session zid=a63c0a424015a78dd621a99fe1cf10e8
+2025-12-31T06:39:22.536786Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:39:22.769577Z  WARN dora_daemon: process 117076 was killed on drop because it was still running
+2025-12-31T06:39:22.978593Z  WARN dora_daemon: process 48008 was killed on drop because it was still running
+2025-12-31T06:39:30.609072Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:39:30.610375Z  INFO zenoh::net::runtime: Using ZID: 9f80021510005a598eff2d48b9f9fa4f
+2025-12-31T06:39:30.622114Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:39:30.622204Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:39:30.622213Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:39:30.622218Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:39:30.622222Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:39:30.622227Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:39:30.622231Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:39:30.622236Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:39:30.622241Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:39:30.622592Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:39:31.126744Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:40:33.713806Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 66d4cd29-b154-46f5-ae88-c9d50ac48966 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:40:33.731366Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 66d4cd29-b154-46f5-ae88-c9d50ac48966 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:40:33.733266Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 66d4cd29-b154-46f5-ae88-c9d50ac48966 }}: zenoh::api::session: close session zid=9f80021510005a598eff2d48b9f9fa4f
+2025-12-31T06:40:33.735747Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:40:33.735809Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:40:33.736198Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:40:34.002670Z  WARN dora_daemon: process 118556 was killed on drop because it was still running
+2025-12-31T06:40:34.235982Z  WARN dora_daemon: process 29444 was killed on drop because it was still running
+2025-12-31T06:40:34.451221Z  WARN dora_daemon: process 43676 was killed on drop because it was still running
+2025-12-31T06:44:01.944960Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:44:01.945868Z  INFO zenoh::net::runtime: Using ZID: 4ee53be98bc727159c5b0ec80180b573
+2025-12-31T06:44:01.955020Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:44:01.955046Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:44:01.955051Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:44:01.955055Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:44:01.955059Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:44:01.955064Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:44:01.955068Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:44:01.955072Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:44:01.955102Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:44:01.955309Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:44:02.459215Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:44:48.471218Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 7dcea7ae-c81c-422b-b31b-c96f5d5b2837 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:44:48.482364Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 7dcea7ae-c81c-422b-b31b-c96f5d5b2837 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:44:48.482818Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:44:48.482869Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:44:48.483486Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 7dcea7ae-c81c-422b-b31b-c96f5d5b2837 }}: zenoh::api::session: close session zid=4ee53be98bc727159c5b0ec80180b573
+2025-12-31T06:44:48.485798Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:44:48.485982Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:44:48.494127Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:44:48.499970Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:44:51.613207Z  WARN dora_daemon: process 29220 was killed on drop because it was still running
+2025-12-31T06:44:51.852939Z  WARN dora_daemon: process 60244 was killed on drop because it was still running
+2025-12-31T06:44:52.095485Z  WARN dora_daemon: process 50912 was killed on drop because it was still running
+2025-12-31T06:47:53.561879Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:47:53.580365Z  INFO zenoh::net::runtime: Using ZID: 12701bac07a50963589149ec2c120b7b
+2025-12-31T06:47:53.588320Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:47:53.588345Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:47:53.588397Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:47:53.588403Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:47:53.588406Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:47:53.588408Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:47:53.588411Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:47:53.588414Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:47:53.588417Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:47:53.588594Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:47:54.097028Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:49:09.180422Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: eaf53139-7cfa-4d85-bc9f-c5d1de47f5b4 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:49:09.193676Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: eaf53139-7cfa-4d85-bc9f-c5d1de47f5b4 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:49:09.193882Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:49:09.194488Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: eaf53139-7cfa-4d85-bc9f-c5d1de47f5b4 }}: zenoh::api::session: close session zid=12701bac07a50963589149ec2c120b7b
+2025-12-31T06:49:09.195214Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:49:09.195314Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:49:09.197127Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:49:09.197837Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:49:09.200980Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:49:12.833145Z ERROR dora_daemon: failed to report ctrl-c event to dora-coordinator
+2025-12-31T06:49:13.096980Z  WARN dora_daemon: received 3rd ctrlc signal -> aborting immediately
+2025-12-31T06:54:41.112867Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T06:54:41.113704Z  INFO zenoh::net::runtime: Using ZID: f482867e166895bdbc04357780f9c3d0
+2025-12-31T06:54:41.124388Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T06:54:41.124415Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T06:54:41.124420Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T06:54:41.124425Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T06:54:41.124429Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T06:54:41.124434Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T06:54:41.124438Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T06:54:41.124496Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T06:54:41.124504Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T06:54:41.124722Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T06:54:41.633757Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T06:56:01.612164Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c521c72d-84ef-42d1-acea-db890a97025f }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T06:56:01.622692Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c521c72d-84ef-42d1-acea-db890a97025f }}: dora_daemon: received destroy command -> exiting
+2025-12-31T06:56:01.623126Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T06:56:01.623895Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: c521c72d-84ef-42d1-acea-db890a97025f }}: zenoh::api::session: close session zid=f482867e166895bdbc04357780f9c3d0
+2025-12-31T06:56:01.624033Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:56:01.624241Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T06:56:01.863001Z  WARN dora_daemon: process 120756 was killed on drop because it was still running
+2025-12-31T06:56:02.046401Z  WARN dora_daemon: process 56884 was killed on drop because it was still running
+2025-12-31T07:01:14.968647Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T07:01:14.980515Z  INFO zenoh::net::runtime: Using ZID: 538e3d6ade93e6a12c55cba3e35c38d5
+2025-12-31T07:01:14.988828Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T07:01:14.988854Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T07:01:14.988858Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T07:01:14.988861Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T07:01:14.988863Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T07:01:14.988866Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T07:01:14.988869Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T07:01:14.988872Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T07:01:14.988874Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T07:01:14.989080Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T07:01:15.491532Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T07:07:06.078346Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 6dbe32f1-72d0-41e3-a63c-bd0fd338d2bc }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T07:07:06.101912Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 6dbe32f1-72d0-41e3-a63c-bd0fd338d2bc }}: dora_daemon: received destroy command -> exiting
+2025-12-31T07:07:06.102435Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T07:07:06.103687Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:07:06.103704Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 6dbe32f1-72d0-41e3-a63c-bd0fd338d2bc }}: zenoh::api::session: close session zid=538e3d6ade93e6a12c55cba3e35c38d5
+2025-12-31T07:07:06.104178Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:07:06.116637Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:07:06.166822Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:07:06.734543Z  WARN dora_daemon: process 93668 was killed on drop because it was still running
+2025-12-31T07:07:06.953933Z  WARN dora_daemon: process 49272 was killed on drop because it was still running
+2025-12-31T07:07:07.165790Z  WARN dora_daemon: process 54772 was killed on drop because it was still running
+2025-12-31T07:17:40.526503Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T07:17:40.527307Z  INFO zenoh::net::runtime: Using ZID: a95e35952db329401b035f58d23e156b
+2025-12-31T07:17:40.537039Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T07:17:40.537063Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T07:17:40.537068Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T07:17:40.537071Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T07:17:40.537075Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T07:17:40.537078Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T07:17:40.537082Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T07:17:40.537085Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T07:17:40.537089Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T07:17:40.537289Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T07:17:41.045850Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T07:17:58.808308Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5bc0ffd7-6a67-4823-9563-83e2cc112215 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T07:17:58.832450Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5bc0ffd7-6a67-4823-9563-83e2cc112215 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T07:17:58.833849Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:17:58.833946Z  WARN dora_daemon::node_communication: failed to receive reply from daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:508:30
+2025-12-31T07:17:58.834260Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5bc0ffd7-6a67-4823-9563-83e2cc112215 }}: zenoh::api::session: close session zid=a95e35952db329401b035f58d23e156b
+2025-12-31T07:17:58.835730Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:17:58.840004Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:17:58.843304Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:17:58.885734Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:18:00.194972Z  WARN dora_daemon: process 4396 was killed on drop because it was still running
+2025-12-31T07:40:31.701421Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T07:40:31.702333Z  INFO zenoh::net::runtime: Using ZID: e6353f1fda92e6af52d41590b4f16585
+2025-12-31T07:40:31.711206Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T07:40:31.711224Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T07:40:31.711228Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T07:40:31.711231Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T07:40:31.711233Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T07:40:31.711236Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T07:40:31.711239Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T07:40:31.711242Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T07:40:31.711245Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T07:40:31.711401Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T07:40:32.216068Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T07:42:45.910502Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 690241c7-8184-40a0-93a0-d916b39a71a3 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T07:42:45.918316Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 690241c7-8184-40a0-93a0-d916b39a71a3 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T07:42:45.920002Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 690241c7-8184-40a0-93a0-d916b39a71a3 }}: zenoh::api::session: close session zid=e6353f1fda92e6af52d41590b4f16585
+2025-12-31T07:42:45.922897Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:42:45.923098Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:42:45.924151Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T07:42:46.309888Z  WARN dora_daemon: process 104060 was killed on drop because it was still running
+2025-12-31T07:42:54.843699Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T07:42:54.844488Z  INFO zenoh::net::runtime: Using ZID: 2ba06e717e28abd3cbff676b2edd14dc
+2025-12-31T07:42:54.853318Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T07:42:54.853342Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T07:42:54.853347Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T07:42:54.853351Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T07:42:54.853395Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T07:42:54.853401Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T07:42:54.853404Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T07:42:54.853406Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T07:42:54.853409Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T07:42:54.853604Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T07:42:55.366577Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T07:50:57.675569Z  WARN run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: fb0845bf-e2b0-4e61-aa46-24dd31eb302c }}: dora_daemon: Daemon took 115ms for handling event: Dora
+2025-12-31T08:19:23.652935Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: fb0845bf-e2b0-4e61-aa46-24dd31eb302c }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T08:19:23.661381Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: fb0845bf-e2b0-4e61-aa46-24dd31eb302c }}: dora_daemon: received destroy command -> exiting
+2025-12-31T08:19:23.663723Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: fb0845bf-e2b0-4e61-aa46-24dd31eb302c }}: zenoh::api::session: close session zid=2ba06e717e28abd3cbff676b2edd14dc
+2025-12-31T08:19:23.666934Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:23.678938Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:23.693959Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:23.698588Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:23.698827Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:23.724981Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:19:27.335845Z ERROR dora_daemon: failed to report ctrl-c event to dora-coordinator
+2025-12-31T08:19:27.465329Z  WARN dora_daemon: process 74372 was killed on drop because it was still running
+2025-12-31T08:47:33.698278Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T08:47:33.699611Z  INFO zenoh::net::runtime: Using ZID: 13484f026ed3cc3b64a4a4a0de18fe08
+2025-12-31T08:47:33.710528Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T08:47:33.710571Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T08:47:33.710577Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T08:47:33.710581Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T08:47:33.710585Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T08:47:33.710588Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T08:47:33.710592Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T08:47:33.710672Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T08:47:33.710682Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T08:47:33.710934Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T08:47:34.216180Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T08:55:22.986345Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b8af27b9-6d27-4d11-979e-443316ca9c95 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T08:55:22.988177Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b8af27b9-6d27-4d11-979e-443316ca9c95 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T08:55:22.990534Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: b8af27b9-6d27-4d11-979e-443316ca9c95 }}: zenoh::api::session: close session zid=13484f026ed3cc3b64a4a4a0de18fe08
+2025-12-31T08:55:23.148152Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.148152Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.148152Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.148152Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.148152Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.234871Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T08:55:23.607696Z  WARN dora_daemon: process 22712 was killed on drop because it was still running
+2025-12-31T08:55:23.788283Z  WARN dora_daemon: process 105176 was killed on drop because it was still running
+2025-12-31T08:55:23.973092Z  WARN dora_daemon: process 42800 was killed on drop because it was still running
+2025-12-31T09:28:03.098957Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T09:28:03.397805Z  INFO zenoh::net::runtime: Using ZID: 11ac7eb4df8a231e068c410e8edc3d79
+2025-12-31T09:28:03.429498Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T09:28:03.429698Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T09:28:03.429703Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T09:28:03.429706Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T09:28:03.429711Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T09:28:03.429714Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T09:28:03.429716Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T09:28:03.429719Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T09:28:03.429722Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T09:28:03.430598Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T09:28:03.944922Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T09:30:40.431506Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5d377ae0-258f-457e-ac2c-c7e44156cf05 }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T09:30:40.433099Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5d377ae0-258f-457e-ac2c-c7e44156cf05 }}: dora_daemon: received destroy command -> exiting
+2025-12-31T09:30:40.434000Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: 5d377ae0-258f-457e-ac2c-c7e44156cf05 }}: zenoh::api::session: close session zid=11ac7eb4df8a231e068c410e8edc3d79
+2025-12-31T09:30:40.513329Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:40.513329Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:40.513347Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:40.513347Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:40.513447Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:40.778021Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:30:44.261678Z  WARN dora_daemon: process 48504 was killed on drop because it was still running
+2025-12-31T09:30:44.438171Z  WARN dora_daemon: process 134856 was killed on drop because it was still running
+2025-12-31T09:30:44.617898Z  WARN dora_daemon: process 141980 was killed on drop because it was still running
+2025-12-31T09:41:54.833751Z  INFO dora_daemon::coordinator: Connected to dora-coordinator at 127.0.0.1:53290
+2025-12-31T09:41:54.834779Z  INFO zenoh::net::runtime: Using ZID: cbc26eb71166be7797e2439788efec36
+2025-12-31T09:41:54.846188Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::d1a9:ce35:c38:cfc4]:5456
+2025-12-31T09:41:54.846210Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::6a50:6604:2823:9e50]:5456
+2025-12-31T09:41:54.846215Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::f956:8b76:1ba6:cb14]:5456
+2025-12-31T09:41:54.846219Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::a843:a90c:b4a2:2914]:5456
+2025-12-31T09:41:54.846222Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::95b1:789e:156f:c84c]:5456
+2025-12-31T09:41:54.846225Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::bb16:da86:ac95:47c0]:5456
+2025-12-31T09:41:54.846228Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/[fe80::34e2:b22a:5b5f:3aa]:5456
+2025-12-31T09:41:54.846232Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.1.100:5456
+2025-12-31T09:41:54.846236Z  INFO zenoh::net::runtime::orchestrator: Zenoh can be reached at: tcp/192.168.0.215:5456
+2025-12-31T09:41:54.846441Z  INFO zenoh::net::runtime::orchestrator: zenohd listening scout messages on 224.0.0.224:7446
+2025-12-31T09:41:55.362285Z  WARN zenoh::net::runtime::orchestrator: Scouting delay elapsed before start conditions are met.
+2025-12-31T09:59:24.818405Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: e64e9bf8-9588-4d2b-baf1-7cacb558e6ae }}: dora_daemon: received ctrlc signal -> stopping all dataflows
+2025-12-31T09:59:24.831156Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: e64e9bf8-9588-4d2b-baf1-7cacb558e6ae }}: dora_daemon: received destroy command -> exiting
+2025-12-31T09:59:24.833810Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:24.834903Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:24.836136Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:24.837980Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:24.846456Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:24.848687Z  INFO run_inner{self.daemon_id=DaemonId { machine_id: None, uuid: e64e9bf8-9588-4d2b-baf1-7cacb558e6ae }}: zenoh::api::session: close session zid=cbc26eb71166be7797e2439788efec36
+2025-12-31T09:59:24.893059Z  WARN dora_daemon::node_communication: failed to send event to daemon
+
+Location:
+    D:\a\dora\dora\binaries\daemon\src\node_communication\mod.rs:504:26
+2025-12-31T09:59:27.140225Z  WARN dora_daemon: process 124876 was killed on drop because it was still running
+2025-12-31T09:59:27.378264Z  WARN dora_daemon: process 133196 was killed on drop because it was still running

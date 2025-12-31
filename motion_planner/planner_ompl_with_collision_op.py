@@ -47,6 +47,7 @@ from collision_detection.collision_lib import (
     create_robot_link
 )
 from config.robot_config import GEN72Config
+from config.lm3_config import LM3Config
 
 
 class PlannerType(Enum):
@@ -88,7 +89,7 @@ class TreeNode:
 
 
 class SimpleFK:
-    """Simple forward kinematics for GEN72"""
+    """Simple forward kinematics"""
 
     def __init__(self, num_joints: int = 7):
         self.num_joints = num_joints
@@ -98,20 +99,29 @@ class SimpleFK:
         q = joint_positions
         transforms = {}
 
-        # Simplified FK - approximate link positions
-        transforms["link0"] = np.array([0.0, 0.0, 0.109])  # base
-        transforms["link1"] = np.array([0.0, 0.0, 0.218])  # joint1 height
-
-        # Approximate positions based on joint angles
-        c1, s1 = np.cos(q[0]), np.sin(q[0])
-        c2, s2 = np.cos(q[1]), np.sin(q[1])
-
-        transforms["link2"] = transforms["link1"] + np.array([0.14 * s2 * c1, 0.14 * s2 * s1, 0.14 * c2])
-        transforms["link3"] = transforms["link2"] + np.array([0.14 * c1, 0.14 * s1, 0.0])
-        transforms["link4"] = transforms["link3"] + np.array([0.126 * c1, 0.126 * s1, 0.0])
-        transforms["link5"] = transforms["link4"] + np.array([0.06 * c1, 0.06 * s1, 0.0])
-        transforms["link6"] = transforms["link5"] + np.array([0.04 * c1, 0.04 * s1, 0.0])
-        transforms["link7"] = transforms["link6"] + np.array([0.09 * c1, 0.09 * s1, 0.0])
+        if self.num_joints == 6:
+            # LM3 6-DOF
+            transforms["link0"] = np.array([0.0, 0.0, 0.0])
+            transforms["link1"] = np.array([0.0, 0.0, 0.216])
+            c1, s1 = np.cos(q[0]), np.sin(q[0])
+            c2, s2 = np.cos(q[1]), np.sin(q[1])
+            transforms["link2"] = transforms["link1"] + np.array([0.14 * s2 * c1, 0.14 * s2 * s1, 0.14 * c2])
+            transforms["link3"] = transforms["link2"] + np.array([0.13 * c1, 0.13 * s1, 0.0])
+            transforms["link4"] = transforms["link3"] + np.array([0.12 * c1, 0.12 * s1, 0.0])
+            transforms["link5"] = transforms["link4"] + np.array([0.05 * c1, 0.05 * s1, 0.0])
+            transforms["link6"] = transforms["link5"] + np.array([0.04 * c1, 0.04 * s1, 0.0])
+        else:
+            # GEN72 7-DOF
+            transforms["link0"] = np.array([0.0, 0.0, 0.109])
+            transforms["link1"] = np.array([0.0, 0.0, 0.218])
+            c1, s1 = np.cos(q[0]), np.sin(q[0])
+            c2, s2 = np.cos(q[1]), np.sin(q[1])
+            transforms["link2"] = transforms["link1"] + np.array([0.14 * s2 * c1, 0.14 * s2 * s1, 0.14 * c2])
+            transforms["link3"] = transforms["link2"] + np.array([0.14 * c1, 0.14 * s1, 0.0])
+            transforms["link4"] = transforms["link3"] + np.array([0.126 * c1, 0.126 * s1, 0.0])
+            transforms["link5"] = transforms["link4"] + np.array([0.06 * c1, 0.06 * s1, 0.0])
+            transforms["link6"] = transforms["link5"] + np.array([0.04 * c1, 0.04 * s1, 0.0])
+            transforms["link7"] = transforms["link6"] + np.array([0.09 * c1, 0.09 * s1, 0.0])
 
         return transforms
 
@@ -123,12 +133,17 @@ class OMPLPlanner:
     Implements RRT, RRT-Connect, and RRT* algorithms.
     """
     
-    def __init__(self, num_joints: int = 7):
+    def __init__(self, num_joints: int = 7, robot_config=None):
         self.num_joints = num_joints
 
-        # Joint limits (GEN72 robot)
-        self.joint_limits_lower = GEN72Config.JOINT_LOWER_LIMITS
-        self.joint_limits_upper = GEN72Config.JOINT_UPPER_LIMITS
+        # Use provided config or default to GEN72
+        if robot_config is None:
+            robot_config = GEN72Config
+        self.robot_config = robot_config
+
+        # Joint limits
+        self.joint_limits_lower = robot_config.JOINT_LOWER_LIMITS
+        self.joint_limits_upper = robot_config.JOINT_UPPER_LIMITS
         
         # Planning parameters
         self.step_size = 0.2  # Maximum step in joint space
@@ -146,9 +161,9 @@ class OMPLPlanner:
         self.collision_checks = 0
         
     def _setup_robot(self):
-        """Set up robot collision model from GEN72 config"""
+        """Set up robot collision model from config"""
         links = []
-        for i, (geom_type, dims) in enumerate(GEN72Config.COLLISION_GEOMETRY):
+        for i, (geom_type, dims) in enumerate(self.robot_config.COLLISION_GEOMETRY):
             obj_type = CollisionObjectType.CYLINDER if geom_type == "cylinder" else CollisionObjectType.SPHERE
             links.append(create_robot_link(f"link{i}", obj_type, np.array(dims), i))
         self.collision_checker.set_robot_links(links)
@@ -464,7 +479,19 @@ class PlannerOperator:
     """
 
     def __init__(self):
-        self.planner = OMPLPlanner(num_joints=7)
+        # Detect robot type from environment
+        robot_type = os.environ.get("ROBOT_TYPE", "GEN72")
+
+        if robot_type == "LM3":
+            num_joints = 6
+            robot_config = LM3Config
+            print(f"Initializing planner for LM3 (6-DOF)")
+        else:
+            num_joints = 7
+            robot_config = GEN72Config
+            print(f"Initializing planner for GEN72 (7-DOF)")
+
+        self.planner = OMPLPlanner(num_joints=num_joints, robot_config=robot_config)
         self.plan_count = 0
         self.last_scene_version = -1  # Track scene version to avoid redundant updates
 

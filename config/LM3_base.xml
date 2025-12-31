@@ -1,0 +1,118 @@
+<mujoco model="LM3">
+  <compiler angle="radian" meshdir="../LM3-lebai/lebai_lm3_support/meshes/lm3"/>
+
+  <option gravity="0 0 -9.81" timestep="0.001"/>
+
+  <visual>
+    <headlight ambient="0.5 0.5 0.5" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3"/>
+    <scale framewidth="0.01" framelength="0.3"/>
+  </visual>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.2 0.3 0.4" rgb2="0.3 0.4 0.5"/>
+    <material name="grid" texture="grid" texrepeat="10 10" reflectance="0.1"/>
+
+    <!-- Visual meshes (high detail) -->
+    <mesh name="base_link_visual" file="visual/base_link.stl"/>
+    <mesh name="link1_visual" file="visual/link1.stl"/>
+    <mesh name="link2_visual" file="visual/link2.stl"/>
+    <mesh name="link3_visual" file="visual/link3.stl"/>
+    <mesh name="link4_visual" file="visual/link4.stl"/>
+    <mesh name="link5_visual" file="visual/link5.stl"/>
+    <mesh name="link6_visual" file="visual/link6.stl"/>
+
+    <!-- Collision meshes (simplified) -->
+    <mesh name="base_link_collision" file="collision/base_link.stl"/>
+    <mesh name="link1_collision" file="collision/link1.stl"/>
+    <mesh name="link2_collision" file="collision/link2.stl"/>
+    <mesh name="link3_collision" file="collision/link3.stl"/>
+    <mesh name="link4_collision" file="collision/link4.stl"/>
+    <mesh name="link5_collision" file="collision/link5.stl"/>
+    <mesh name="link6_collision" file="collision/link6.stl"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3"/>
+    <light pos="2 2 3" dir="-1 -1 -1" diffuse="0.5 0.5 0.5"/>
+    <geom name="floor" type="plane" size="3 3 0.1" material="grid"/>
+
+    <!-- World coordinate frame -->
+    <body name="world_frame" pos="0 0 0">
+      <geom type="cylinder" size="0.005 0.15" pos="0.15 0 0" quat="0.707107 0 0.707107 0" rgba="1 0 0 1"/>
+      <geom type="cylinder" size="0.005 0.15" pos="0 0.15 0" quat="0.707107 -0.707107 0 0" rgba="0 1 0 1"/>
+      <geom type="cylinder" size="0.005 0.15" pos="0 0 0.15" rgba="0 0 1 1"/>
+    </body>
+
+    <!-- LM3 Robot Base -->
+    <geom type="mesh" mesh="base_link_visual" rgba="1 1 1 1"/>
+    <geom type="mesh" mesh="base_link_collision" rgba="1 1 1 1" contype="1" conaffinity="1"/>
+
+    <!-- Link 1 -->
+    <body name="link_1" pos="0 0 0.21583">
+      <inertial pos="0.0 -0.011 -0.015" mass="2.147"
+                diaginertia="0.0082391363 0.0076087775 0.0032573589"/>
+      <joint name="joint_1" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-100 100"/>
+      <geom type="mesh" mesh="link1_visual" rgba="1 1 1 1"/>
+      <geom type="mesh" mesh="link1_collision" contype="1" conaffinity="1"/>
+
+      <!-- Link 2 -->
+      <body name="link_2" quat="0.707107 0.707107 0 0">
+        <inertial pos="-0.134 0.0 0.094" mass="1.972"
+                  diaginertia="0.0017128976 0.033612233 0.03384798"/>
+        <joint name="joint_2" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" mesh="link2_visual" rgba="1 1 1 1"/>
+        <geom type="mesh" mesh="link2_collision" contype="1" conaffinity="1"/>
+
+        <!-- Link 3 -->
+        <body name="link_3" pos="-0.28 0 0">
+          <inertial pos="-0.102 0.0 0.019" mass="1.668"
+                    diaginertia="0.0017092842 0.022563964 0.022383877"/>
+          <joint name="joint_3" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" mesh="link3_visual" rgba="1 1 1 1"/>
+          <geom type="mesh" mesh="link3_collision" contype="1" conaffinity="1"/>
+
+          <!-- Link 4 -->
+          <body name="link_4" pos="-0.26 0 0.12063">
+            <inertial pos="0.0 0.011 -0.039" mass="0.969"
+                      diaginertia="0.0018744072 0.0017809517 0.00079617326"/>
+            <joint name="joint_4" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" mesh="link4_visual" rgba="1 1 1 1"/>
+            <geom type="mesh" mesh="link4_collision" contype="1" conaffinity="1"/>
+
+            <!-- Link 5 -->
+            <body name="link_5" pos="0 -0.09833 0" quat="0.707107 0.707107 0 0">
+              <inertial pos="0.0 -0.011 -0.039" mass="0.969"
+                        diaginertia="0.0018744072 0.0017809517 0.00079617326"/>
+              <joint name="joint_5" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-30 30"/>
+              <geom type="mesh" mesh="link5_visual" rgba="1 1 1 1"/>
+              <geom type="mesh" mesh="link5_collision" contype="1" conaffinity="1"/>
+
+              <!-- Link 6 -->
+              <body name="link_6" pos="0 0.08343 0" quat="0.707107 -0.707107 0 0">
+                <inertial pos="0 0 -0.049" mass="0.584"
+                          diaginertia="0.00050434988 0.0005155908 0.0004119313"/>
+                <joint name="joint_6" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" actuatorfrcrange="-20 20"/>
+                <geom type="mesh" mesh="link6_visual" rgba="1 1 1 1"/>
+                <geom type="mesh" mesh="link6_collision" contype="1" conaffinity="1"/>
+
+                <!-- Tool0 (end effector) -->
+                <body name="tool0" pos="0 0 -0.08">
+                  <geom type="sphere" size="0.02" rgba="1 0 0 0.5"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="actuator_joint_1" joint="joint_1" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_2" joint="joint_2" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_3" joint="joint_3" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_4" joint="joint_4" kp="1000" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_5" joint="joint_5" kp="1000" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_6" joint="joint_6" kp="500" kv="200" ctrlrange="-6.28 6.28"/>
+  </actuator>
+</mujoco>

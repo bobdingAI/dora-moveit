@@ -114,7 +114,7 @@ class CollisionChecker:
         self.self_collision_pairs = []
         n = len(self.robot_links)
         for i in range(n):
-            for j in range(i + 3, n):  # Skip 2 adjacent links in kinematic chain
+            for j in range(i + 4, n):  # Skip 3 adjacent links to avoid false positives
                 self.self_collision_pairs.append((i, j))
     
     # ==================== Primitive Collision Functions ====================
