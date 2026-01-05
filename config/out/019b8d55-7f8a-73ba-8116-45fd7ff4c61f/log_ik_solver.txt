@@ -1,0 +1,11 @@
+=== Dora-MoveIt IK Operator (LM3 6-DOF) ===
+[IK-LM3] Using TracIK solver (6-DOF)
+IK operator started, waiting for requests...
+[IK-LM3] Request #1: target=[0.4  0.08 0.45]
+[IK-LM3] SUCCESS: Solution found, error=0.007389
+Traceback (most recent call last):
+  File "\\?\F:\2-DORA\2-arm\dora-moveit\dora-control-lebai\ik_solver\ik_op_lm3.py", line 230, in <module>
+    main()
+  File "\\?\F:\2-DORA\2-arm\dora-moveit\dora-control-lebai\ik_solver\ik_op_lm3.py", line 196, in main
+    event_type = event["type"]
+KeyboardInterrupt

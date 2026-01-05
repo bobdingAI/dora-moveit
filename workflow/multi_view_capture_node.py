@@ -20,7 +20,6 @@ import numpy as np
 import pyarrow as pa
 from dataclasses import dataclass
 from dora import Node
-from config.robot_config import GEN72Config
 from config.lm3_config import LM3Config
 
 
@@ -36,14 +35,9 @@ class MultiViewCaptureNode:
     """Multi-view capture workflow controller"""
 
     def __init__(self):
-        # Detect robot type from environment
-        robot_type = os.getenv("ROBOT_TYPE", "GEN72")
-        if robot_type == "LM3":
-            self.robot_config = LM3Config
-            self.num_joints = 6
-        else:
-            self.robot_config = GEN72Config
-            self.num_joints = 7
+        # LM3 6-DOF robot configuration
+        self.robot_config = LM3Config
+        self.num_joints = 6
 
         # Capture targets (3 viewpoints) - near SAFE_CONFIG for easy reachability
         self.targets = [

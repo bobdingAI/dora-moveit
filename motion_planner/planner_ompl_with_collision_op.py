@@ -46,7 +46,6 @@ from collision_detection.collision_lib import (
     create_cylinder,
     create_robot_link
 )
-from config.robot_config import GEN72Config
 from config.lm3_config import LM3Config
 
 
@@ -479,17 +478,10 @@ class PlannerOperator:
     """
 
     def __init__(self):
-        # Detect robot type from environment
-        robot_type = os.environ.get("ROBOT_TYPE", "GEN72")
-
-        if robot_type == "LM3":
-            num_joints = 6
-            robot_config = LM3Config
-            print(f"Initializing planner for LM3 (6-DOF)")
-        else:
-            num_joints = 7
-            robot_config = GEN72Config
-            print(f"Initializing planner for GEN72 (7-DOF)")
+        # LM3 6-DOF robot configuration
+        num_joints = 6
+        robot_config = LM3Config
+        print(f"Initializing planner for LM3 (6-DOF)")
 
         self.planner = OMPLPlanner(num_joints=num_joints, robot_config=robot_config)
         self.plan_count = 0

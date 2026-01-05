@@ -145,19 +145,10 @@ class TrajectoryExecutor:
 def main():
     print("=== Dora-MoveIt Trajectory Executor (Quintic Interpolation) ===")
 
-    import os
-    robot_type = os.environ.get("ROBOT_TYPE", "GEN72")
-
-    if robot_type == "LM3":
-        from config.lm3_config import LM3Config
-        num_joints = 6
-        safe_config = LM3Config.SAFE_CONFIG
-        print("Initializing for LM3 (6-DOF)")
-    else:
-        from config.robot_config import GEN72Config
-        num_joints = 7
-        safe_config = GEN72Config.SAFE_CONFIG
-        print("Initializing for GEN72 (7-DOF)")
+    from config.lm3_config import LM3Config
+    num_joints = 6
+    safe_config = LM3Config.SAFE_CONFIG
+    print("Initializing for LM3 (6-DOF)")
 
     node = Node()
     executor = TrajectoryExecutor(num_joints=num_joints)
