@@ -111,13 +111,13 @@ class LM3LMasterNode:
             # Convert to Python float (lebai_sdk doesn't accept numpy float32)
             target_joints = [float(x) for x in target_joints]
 
-            # Use move_pvat with 50ms timing to match tick frequency
-            # This reduces double interpolation conflict
-            self.arm.move_pvat(
+            # Use movej - let L-Master do all interpolation
+            self.arm.movej(
                 target_joints,
-                [self.velocity] * 6,      # Velocity limits for each joint
-                [self.acceleration] * 6,  # Acceleration limits for each joint
-                0.05                      # 50ms movement time (matches tick)
+                a=self.acceleration,
+                v=self.velocity,
+                t=0,
+                r=0
             )
 
             if wait:
@@ -179,6 +179,71 @@ def main():
                     else:
                         node.send_output("status", pa.array(["error"]))
                         node.send_output("error", pa.array([json.dumps(result)]))
+
+                elif event_id == "trajectory":
+                    # Receive complete trajectory from planner
+                    try:
+                        traj_flat = event["value"].to_numpy()
+                        metadata = event.get("metadata", {})
+                        num_waypoints = metadata.get("num_waypoints", len(traj_flat) // 6)
+                        num_joints = metadata.get("num_joints", 6)
+
+                        trajectory = traj_flat.reshape(num_waypoints, num_joints)
+
+                        # Initialize execution counter
+                        if not hasattr(driver, 'execution_count'):
+                            driver.execution_count = 0
+                        driver.execution_count += 1
+
+                        # Send start status
+                        status = {
+                            "is_executing": True,
+                            "execution_count": driver.execution_count,
+                            "current_waypoint": 0,
+                            "total_waypoints": num_waypoints,
+                            "progress": 0.0
+                        }
+                        node.send_output("execution_status",
+                                       pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+
+                        print(f"[LM3-LMaster] Executing trajectory #{driver.execution_count} with {num_waypoints} waypoints")
+
+                        # Execute each waypoint
+                        for i, waypoint in enumerate(trajectory):
+                            # Update status
+                            status["current_waypoint"] = i + 1
+                            status["progress"] = (i + 1) / num_waypoints
+                            node.send_output("execution_status",
+                                           pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+
+                            # Execute movement (blocking)
+                            result = driver.move_joints(list(waypoint), wait=True)
+
+                            if not result["success"]:
+                                node.send_output("status", pa.array(["error"]))
+                                node.send_output("error", pa.array([json.dumps(result)]))
+                                break
+
+                            # Send current joint state
+                            state = driver.get_current_state()
+                            if state.get("success"):
+                                joints = np.array(state["joints"])
+                                velocities = np.array(state["velocities"])
+                                node.send_output("joint_positions", pa.array(joints, type=pa.float32()))
+                                node.send_output("joint_velocities", pa.array(velocities, type=pa.float32()))
+
+                        # Send completion status
+                        status["is_executing"] = False
+                        node.send_output("execution_status",
+                                       pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+                        node.send_output("status", pa.array(["completed"]))
+                        print(f"[LM3-LMaster] Trajectory #{driver.execution_count} completed")
+
+                    except Exception as e:
+                        error_msg = {"success": False, "error": f"Trajectory error: {str(e)}"}
+                        print(f"[LM3-LMaster] Error: {error_msg}")
+                        node.send_output("status", pa.array(["error"]))
+                        node.send_output("error", pa.array([json.dumps(error_msg)]))
 
                 elif event_id == "control_input":
                     # Receive joint command from trajectory_executor

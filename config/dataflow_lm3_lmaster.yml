@@ -4,8 +4,9 @@
 #   - Multi-view control (capture)
 #   - IK solver (ik_solver)
 #   - Collision-aware motion planning (planner)
-#   - Trajectory execution (trajectory_executor)
 #   - L-Master simulation visualization (lmaster_sim)
+#
+# Note: trajectory_executor removed - L-Master handles interpolation
 #
 # Usage:
 #   dora start config/dataflow_lm3_lmaster.yml
@@ -17,14 +18,15 @@ nodes:
   - id: lmaster_sim
     path: ../simulation/lm3_lmaster_node.py
     inputs:
-      tick: dora/timer/millis/50         # 20 Hz state updates
-      control_input: trajectory_executor/joint_commands
+      trajectory: planner/trajectory         # Direct trajectory from planner
+      tick: dora/timer/millis/100            # Periodic state updates when idle
       command: capture/sim_command
     outputs:
-      - joint_positions                  # Current joint angles
-      - joint_velocities                 # Joint velocities
-      - status                           # Simulation status (idle, moving, error)
-      - error                            # Error messages (JSON)
+      - joint_positions                      # Current joint angles
+      - joint_velocities                     # Joint velocities
+      - execution_status                     # Trajectory execution status (JSON)
+      - status                               # Simulation status (idle, moving, error)
+      - error                                # Error messages (JSON)
     env:
       LEBAI_IP: "127.0.0.1"
       LEBAI_SIMULATION: "true"
@@ -72,19 +74,19 @@ nodes:
       - ik_status
 
   # ===========================================
-  # Trajectory Executor
+  # Trajectory Executor (DISABLED - L-Master handles interpolation)
   # ===========================================
-  - id: trajectory_executor
-    path: ../trajectory_execution/trajectory_executor.py
-    inputs:
-      trajectory: planner/trajectory
-      joint_positions: lmaster_sim/joint_positions
-      tick: dora/timer/millis/50          # 20 Hz execution
-    outputs:
-      - joint_commands
-      - execution_status
-    env:
-      ROBOT_TYPE: "LM3"
+  # - id: trajectory_executor
+  #   path: ../trajectory_execution/trajectory_executor.py
+  #   inputs:
+  #     trajectory: planner/trajectory
+  #     joint_positions: lmaster_sim/joint_positions
+  #     tick: dora/timer/millis/50          # 20 Hz execution
+  #   outputs:
+  #     - joint_commands
+  #     - execution_status
+  #   env:
+  #     ROBOT_TYPE: "LM3"
 
   # ===========================================
   # LM3 Multi-View Capture Controller
@@ -97,7 +99,7 @@ nodes:
 
     inputs:
       joint_positions: lmaster_sim/joint_positions
-      execution_status: trajectory_executor/execution_status
+      execution_status: lmaster_sim/execution_status
       trajectory: planner/trajectory
       plan_status: planner/plan_status
       ik_solution: ik_solver/ik_solution
