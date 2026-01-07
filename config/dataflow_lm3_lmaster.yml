@@ -1,34 +1,35 @@
-# LM3 Multi-View Capture + Planning + MuJoCo Visualization
+# LM3 Multi-View Capture + Planning + L-Master Simulation
 # ==========================================================
 # LM3 6-DOF robot multi-view capture workflow with:
 #   - Multi-view control (capture)
 #   - IK solver (ik_solver)
 #   - Collision-aware motion planning (planner)
 #   - Trajectory execution (trajectory_executor)
-#   - MuJoCo simulation visualization (mujoco_sim)
+#   - L-Master simulation visualization (lmaster_sim)
 #
 # Usage:
-#   dora start config/dataflow_lm3_mujoco.yml
+#   dora start config/dataflow_lm3_lmaster.yml
 
 nodes:
   # ===========================================
-  # MuJoCo Simulation (LM3 6-DOF robot) - Improved
+  # Lebai L-Master Simulation (LM3 6-DOF robot)
   # ===========================================
-  - id: mujoco_sim
-    path: ../simulation/lm3_mujoco_node.py
+  - id: lmaster_sim
+    path: ../simulation/lm3_lmaster_node.py
     inputs:
-      tick: dora/timer/millis/10         # 100 Hz simulation
+      tick: dora/timer/millis/50         # 20 Hz state updates
       control_input: trajectory_executor/joint_commands
-      command: capture/sim_command       # Control commands (reset, home, safe, get_state)
+      command: capture/sim_command
     outputs:
       - joint_positions                  # Current joint angles
       - joint_velocities                 # Joint velocities
-      - status                           # Simulation status (idle, running, moving, error)
+      - status                           # Simulation status (idle, moving, error)
       - error                            # Error messages (JSON)
     env:
-      MUJOCO_MODEL_PATH: "F:/2-DORA/2-arm/dora-moveit/dora-control-lebai/config/LM3_base.xml"
-      MUJOCO_RENDER: "true"
-      MUJOCO_DT: "0.01"
+      LEBAI_IP: "127.0.0.1"
+      LEBAI_SIMULATION: "true"
+      LEBAI_ACCELERATION: "0.6"
+      LEBAI_VELOCITY: "0.3"
 
   # ===========================================
   # Planning Scene Manager
@@ -36,7 +37,7 @@ nodes:
   - id: planning_scene
     path: ../motion_planner/planning_scene_op.py
     inputs:
-      robot_state: mujoco_sim/joint_positions
+      robot_state: lmaster_sim/joint_positions
       scene_command: capture/scene_command
       tick: dora/timer/millis/5000
     outputs:
@@ -77,7 +78,7 @@ nodes:
     path: ../trajectory_execution/trajectory_executor.py
     inputs:
       trajectory: planner/trajectory
-      joint_positions: mujoco_sim/joint_positions
+      joint_positions: lmaster_sim/joint_positions
       tick: dora/timer/millis/50          # 20 Hz execution
     outputs:
       - joint_commands
@@ -95,7 +96,7 @@ nodes:
       ROBOT_TYPE: "LM3"
 
     inputs:
-      joint_positions: mujoco_sim/joint_positions
+      joint_positions: lmaster_sim/joint_positions
       execution_status: trajectory_executor/execution_status
       trajectory: planner/trajectory
       plan_status: planner/plan_status
@@ -106,4 +107,4 @@ nodes:
       - plan_request
       - ik_request
       - scene_command
-      - sim_command                      # Simulation control commands
+      - sim_command

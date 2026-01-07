@@ -111,8 +111,8 @@
     <position name="actuator_joint_1" joint="joint_1" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
     <position name="actuator_joint_2" joint="joint_2" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
     <position name="actuator_joint_3" joint="joint_3" kp="1500" kv="200" ctrlrange="-6.28 6.28"/>
-    <position name="actuator_joint_4" joint="joint_4" kp="1000" kv="200" ctrlrange="-6.28 6.28"/>
-    <position name="actuator_joint_5" joint="joint_5" kp="1000" kv="200" ctrlrange="-6.28 6.28"/>
-    <position name="actuator_joint_6" joint="joint_6" kp="500" kv="200" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_4" joint="joint_4" kp="2000" kv="300" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_5" joint="joint_5" kp="2000" kv="300" ctrlrange="-6.28 6.28"/>
+    <position name="actuator_joint_6" joint="joint_6" kp="1500" kv="250" ctrlrange="-6.28 6.28"/>
   </actuator>
 </mujoco>

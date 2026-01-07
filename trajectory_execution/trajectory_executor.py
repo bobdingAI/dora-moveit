@@ -27,7 +27,7 @@ class TrajectoryExecutor:
         self.prev_waypoint: Optional[np.ndarray] = None
 
         self.interpolation_progress = 0.0
-        self.interpolation_speed = 0.03  # 3%每tick,匹配30%机器人速度和150ms tick
+        self.interpolation_speed = 0.03  # 5% per tick, slower interpolation
 
         self.is_executing = False
         self.execution_count = 0
@@ -92,8 +92,7 @@ class TrajectoryExecutor:
         # IDLE / HOLD MODE
         # =========================
         if not self.is_executing or len(self.trajectory) == 0:
-            if self.current_joints is not None:
-                return self.current_joints.copy()
+            # Always return last command to prevent bounce-back
             return self.last_command
 
         if self.prev_waypoint is None:
@@ -115,14 +114,10 @@ class TrajectoryExecutor:
                 self.is_executing = False
                 print(f"[Executor] Trajectory #{self.execution_count} complete!")
 
-                # CRITICAL FIX:
-                # Do NOT output last waypoint
-                # Hold current real joint state
-                if self.current_joints is not None:
-                    self.last_command = self.current_joints.copy()
-                    return self.current_joints.copy()
-
-                return self.last_command
+                # Output last waypoint instead of current_joints
+                # This prevents bounce-back when robot hasn't reached target yet
+                self.last_command = self.trajectory[-1].copy()
+                return self.trajectory[-1].copy()
 
             target = self.trajectory[self.current_waypoint_idx]
 
