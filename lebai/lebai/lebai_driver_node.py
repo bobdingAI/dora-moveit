@@ -31,12 +31,13 @@ class LebaiDriverNode:
         self.arm = None
         self.ip = os.getenv("LEBAI_IP", "127.0.0.1")
         self.simulation = os.getenv("LEBAI_SIMULATION", "true").lower() == "true"
-        self.acceleration = float(os.getenv("LEBAI_ACCELERATION", "0.6"))
-        self.velocity = float(os.getenv("LEBAI_VELOCITY", "0.3"))
+        self.acceleration = float(os.getenv("LEBAI_ACCELERATION", "2.0"))
+        self.velocity = float(os.getenv("LEBAI_VELOCITY", "1.5"))
         self.connected = False
 
         # Home position (6-axis joint angles in radians)
-        self.home_position = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        # Joint angles: J1=-118°, J2=-89°, J3=-93°, J4=-87°, J5=88°, J6=-79°
+        self.home_position = [-2.0595, -1.5533, -1.6232, -1.5184, 1.5359, -1.3788]
 
     def connect(self) -> dict:
         """Connect to the Lebai robot."""

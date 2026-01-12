@@ -9,7 +9,7 @@ echo Please ensure:
 echo   1. Robot is powered on
 echo   2. Workspace is clear
 echo   3. Emergency stop is accessible
-echo   4. Robot IP is configured (default: 192.168.1.200)
+echo   4. Robot IP is configured (default: 10.20.17.1)
 echo.
 set /p confirm="Type 'yes' to continue: "
 if /i not "%confirm%"=="yes" (

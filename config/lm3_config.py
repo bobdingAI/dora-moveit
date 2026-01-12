@@ -106,10 +106,12 @@ class LM3Config:
     MAX_ACCELERATION = np.array([5.0, 5.0, 5.0, 5.0, 8.0, 8.0])  # rad/s^2
 
     # Default home configuration (safe extended pose)
-    HOME_CONFIG = np.array([0.0, -0.5, 0.3, 0.0, 0.3, 0.0])
+    # Joint angles: J1=-118°, J2=-89°, J3=-93°, J4=-87°, J5=88°, J6=-79°
+    HOME_CONFIG = np.array([-2.0595, -1.5533, -1.6232, -1.5184, 1.5359, -1.3788])
 
     # Safe initial configuration (extended, natural pose without self-collision)
-    SAFE_CONFIG = np.array([0.0, -0.5, 0.3, 0.0, 0.3, 0.0])
+    # Joint angles: J1=-118°, J2=-89°, J3=-93°, J4=-87°, J5=88°, J6=-79°
+    SAFE_CONFIG = np.array([-2.0595, -1.5533, -1.6232, -1.5184, 1.5359, -1.3788])
 
     @staticmethod
     def get_joint_limits() -> Tuple[np.ndarray, np.ndarray]:

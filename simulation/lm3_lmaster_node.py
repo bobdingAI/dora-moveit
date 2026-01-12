@@ -44,9 +44,10 @@ class LM3LMasterNode:
         self.velocity = float(os.getenv("LEBAI_VELOCITY", "0.3"))
         self.connected = False
 
-        # Safe position
-        self.safe_position = [0.0, -0.5, 0.3, 0.0, 0.3, 0.0]
-        self.home_position = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        # Safe position - corresponds to pose [0.155, -0.118, 0.588, -90, 0.0, -90]
+        # Joint angles: [0, -160, 120, -140, 90, 0] (deg)
+        self.safe_position = [0.0, -2.7925, 2.0944, -2.4435, 1.5708, 0.0]
+        self.home_position = [0.0, -2.7925, 2.0944, -2.4435, 1.5708, 0.0]
 
         # Track last command to avoid redundant moves
         self.last_target = None

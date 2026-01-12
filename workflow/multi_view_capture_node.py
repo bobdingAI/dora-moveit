@@ -41,9 +41,9 @@ class MultiViewCaptureNode:
 
         # Capture targets (3 viewpoints) - near SAFE_CONFIG for easy reachability
         self.targets = [
-            CaptureTarget("view1", np.array([0.40,  0.08, 0.45, 0.0, 0.0, 0.0])),
-            CaptureTarget("view2", np.array([0.40, -0.08, 0.45, 0.0, 0.0, 0.0])),
-            CaptureTarget("view3", np.array([0.35,  0.0,  0.50, 0.0, 0.0, 0.0])),
+            CaptureTarget("view1", np.array([-0.299,  -0.13, 0.710, 16, -85, 28])),
+            CaptureTarget("view2", np.array([-.304, -0.169, 0.776, 175, -71, -127])),
+            CaptureTarget("view3", np.array([-0.53,  0.037,  0.549, -97, -21, 179])),
         ]
 
         self.current_target_idx = 0

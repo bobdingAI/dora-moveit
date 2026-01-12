@@ -14,7 +14,9 @@ nodes:
     outputs:
       - joint_positions
     env:
-      LEBAI_IP: "192.168.1.200"
+      LEBAI_IP: "10.20.17.1"
+      LEBAI_ACCELERATION: "3"
+      LEBAI_VELOCITY: "20"
 
   # ===========================================
   # Planning Scene Manager
