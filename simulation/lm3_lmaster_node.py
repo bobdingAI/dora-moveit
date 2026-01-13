@@ -205,7 +205,7 @@ def main():
                             "progress": 0.0
                         }
                         node.send_output("execution_status",
-                                       pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+                                       pa.array([json.dumps(status)], type=pa.string()))
 
                         print(f"[LM3-LMaster] Executing trajectory #{driver.execution_count} with {num_waypoints} waypoints")
 
@@ -215,7 +215,7 @@ def main():
                             status["current_waypoint"] = i + 1
                             status["progress"] = (i + 1) / num_waypoints
                             node.send_output("execution_status",
-                                           pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+                                           pa.array([json.dumps(status)], type=pa.string()))
 
                             # Execute movement (blocking)
                             result = driver.move_joints(list(waypoint), wait=True)
@@ -236,7 +236,7 @@ def main():
                         # Send completion status
                         status["is_executing"] = False
                         node.send_output("execution_status",
-                                       pa.array(list(json.dumps(status).encode("utf-8")), type=pa.uint8()))
+                                       pa.array([json.dumps(status)], type=pa.string()))
                         node.send_output("status", pa.array(["completed"]))
                         print(f"[LM3-LMaster] Trajectory #{driver.execution_count} completed")
 

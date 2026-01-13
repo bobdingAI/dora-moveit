@@ -203,8 +203,8 @@ class MultiViewCaptureNode:
             return
 
         try:
-            status_bytes = bytes(data.to_numpy())
-            status = json.loads(status_bytes.decode('utf-8'))
+            status_str = data.to_pylist()[0]
+            status = json.loads(status_str)
 
             # Check if this is the expected execution and it completed
             exec_count = status.get("execution_count", 0)

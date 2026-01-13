@@ -406,7 +406,7 @@ class OMPLPlanner:
                         path = path_a + list(reversed(path_b))[1:]
                         path = self.smooth_path(path)
 
-                        # Interpolate for smoother visualization
+                        # Interpolate for smoother motion (collision already checked by smooth_path)
                         interpolated = []
                         for i in range(len(path) - 1):
                             interpolated.append(path[i])

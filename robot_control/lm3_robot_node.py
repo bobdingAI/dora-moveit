@@ -7,6 +7,8 @@ Lebai LM3 Real Robot Control Node
 Uses lebai_sdk to control physical LM3 robot
 """
 
+import json
+import time
 import numpy as np
 import pyarrow as pa
 from dora import Node
@@ -30,6 +32,11 @@ class LM3RobotNode:
         self.target_joints = LM3Config.SAFE_CONFIG.copy()
         self.is_connected = False
         self.mock_mode = not LEBAI_SDK_AVAILABLE
+        self.execution_count = 0
+
+        # Read velocity and acceleration from environment variables
+        self.acceleration = float(os.getenv("LEBAI_ACCELERATION", "2.0"))
+        self.velocity = float(os.getenv("LEBAI_VELOCITY", "1.5"))
 
         if not self.mock_mode:
             self._connect()
@@ -83,8 +90,8 @@ class LM3RobotNode:
             t = 0.2  # Motion time in seconds
             self.robot.move_pvat(
                 list(target_joints),
-                [0.1, 0.1, 0.1, 0.1, 0.1, 0.1],  # Velocity limits
-                [0.1, 0.1, 0.1, 0.1, 0.1, 0.1],  # Acceleration limits
+                [self.velocity] * 6,      # Use environment variable
+                [self.acceleration] * 6,  # Use environment variable
                 t
             )
         except Exception as e:
@@ -135,14 +142,84 @@ def main():
                         pa.array(joints, type=pa.float32())
                     )
 
-                elif input_id == "joint_command":
-                    # Receive joint command
-                    target_joints = event["value"].to_numpy()
+                elif input_id == "trajectory":
+                    # Receive complete trajectory from planner
+                    traj_flat = event["value"].to_numpy()
+                    metadata = event.get("metadata", {})
+                    num_waypoints = metadata.get("num_waypoints", 12)
+                    num_joints = 6
 
-                    if len(target_joints) == 6:
-                        robot_node.send_joint_command(target_joints)
-                    else:
-                        print(f"[LM3-Robot] Invalid command length: {len(target_joints)}")
+                    trajectory = traj_flat.reshape(num_waypoints, num_joints)
+                    robot_node.execution_count += 1
+
+                    print(f"[LM3-Robot] Received trajectory with {num_waypoints} waypoints")
+
+                    # Send start status
+                    status = {
+                        "is_executing": True,
+                        "execution_count": robot_node.execution_count,
+                        "current_waypoint": 0,
+                        "total_waypoints": num_waypoints,
+                        "progress": 0.0
+                    }
+                    node.send_output("execution_status", pa.array([json.dumps(status)], type=pa.string()))
+
+                    # Execute each waypoint
+                    for i, waypoint in enumerate(trajectory):
+                        if not robot_node.mock_mode:
+                            try:
+                                robot_node.robot.movej(
+                                    [float(x) for x in waypoint],
+                                    a=float(robot_node.acceleration),
+                                    v=float(robot_node.velocity),
+                                    t=0,
+                                    r=0
+                                )
+                                # Wait for motion to complete (blocking)
+                                robot_node.robot.wait_move()
+                            except Exception as e:
+                                print(f"[LM3-Robot] Error executing waypoint {i}: {e}")
+                                status = {
+                                    "is_executing": False,
+                                    "execution_count": robot_node.execution_count,
+                                    "error": str(e)
+                                }
+                                node.send_output("execution_status", pa.array([json.dumps(status)], type=pa.string()))
+                                break
+                        else:
+                            robot_node.current_joints = waypoint.copy()
+
+                        # Send current position (read actual state for real robot)
+                        if not robot_node.mock_mode:
+                            joints = robot_node.read_joint_state()
+                        else:
+                            joints = robot_node.current_joints
+
+                        node.send_output(
+                            "joint_positions",
+                            pa.array(joints, type=pa.float32())
+                        )
+
+                        # Send progress
+                        status = {
+                            "is_executing": True,
+                            "execution_count": robot_node.execution_count,
+                            "current_waypoint": i + 1,
+                            "total_waypoints": num_waypoints,
+                            "progress": (i + 1) / num_waypoints
+                        }
+                        node.send_output("execution_status", pa.array([json.dumps(status)], type=pa.string()))
+
+                    # Send completion status
+                    status = {
+                        "is_executing": False,
+                        "execution_count": robot_node.execution_count,
+                        "current_waypoint": num_waypoints,
+                        "total_waypoints": num_waypoints,
+                        "progress": 1.0
+                    }
+                    node.send_output("execution_status", pa.array([json.dumps(status)], type=pa.string()))
+                    print(f"[LM3-Robot] Trajectory execution completed")
 
             elif event_type == "STOP":
                 print("[LM3-Robot] Stopping...")

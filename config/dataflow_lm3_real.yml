@@ -10,13 +10,14 @@ nodes:
     path: ../robot_control/lm3_robot_node.py
     inputs:
       tick: dora/timer/millis/150                # ~7 Hz update rate
-      joint_command: trajectory_executor/joint_commands
+      trajectory: planner/trajectory             # Direct trajectory from planner
     outputs:
       - joint_positions
+      - execution_status                         # Trajectory execution status
     env:
       LEBAI_IP: "10.20.17.1"
-      LEBAI_ACCELERATION: "3"
-      LEBAI_VELOCITY: "20"
+      LEBAI_ACCELERATION: "2"
+      LEBAI_VELOCITY: "2"
 
   # ===========================================
   # Planning Scene Manager
@@ -59,19 +60,19 @@ nodes:
       - ik_status
 
   # ===========================================
-  # Trajectory Executor
+  # Trajectory Executor (DISABLED - Robot handles interpolation)
   # ===========================================
-  - id: trajectory_executor
-    path: ../trajectory_execution/trajectory_executor.py
-    inputs:
-      trajectory: planner/trajectory
-      joint_positions: lm3_robot/joint_positions
-      tick: dora/timer/millis/200
-    outputs:
-      - joint_commands
-      - execution_status
-    env:
-      ROBOT_TYPE: "LM3"
+  # - id: trajectory_executor
+  #   path: ../trajectory_execution/trajectory_executor.py
+  #   inputs:
+  #     trajectory: planner/trajectory
+  #     joint_positions: lm3_robot/joint_positions
+  #     tick: dora/timer/millis/200
+  #   outputs:
+  #     - joint_commands
+  #     - execution_status
+  #   env:
+  #     ROBOT_TYPE: "LM3"
 
   # ===========================================
   # Multi-View Capture Controller
@@ -83,7 +84,7 @@ nodes:
       ROBOT_TYPE: "LM3"
     inputs:
       joint_positions: lm3_robot/joint_positions
-      execution_status: trajectory_executor/execution_status
+      execution_status: lm3_robot/execution_status
       trajectory: planner/trajectory
       plan_status: planner/plan_status
       ik_solution: ik_solver/ik_solution
