@@ -392,9 +392,13 @@ class PlanningSceneOperator:
 def main():
     """Main entry point for Dora Planning Scene operator"""
     print("=== Dora-MoveIt Planning Scene Operator ===")
-    
+
+    # LM3 6-DOF robot configuration
+    num_joints = 6
+    print(f"Initializing planning scene for LM3 (6-DOF)")
+
     node = Node()
-    scene_op = PlanningSceneOperator(num_joints=7)
+    scene_op = PlanningSceneOperator(num_joints=num_joints)
     
     # Broadcast initial scene
     print("Broadcasting initial scene state...")

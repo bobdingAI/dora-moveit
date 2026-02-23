@@ -1,0 +1,109 @@
+# LM3 Multi-View Capture + Planning + MuJoCo Visualization
+# ==========================================================
+# LM3 6-DOF robot multi-view capture workflow with:
+#   - Multi-view control (capture)
+#   - IK solver (ik_solver)
+#   - Collision-aware motion planning (planner)
+#   - Trajectory execution (trajectory_executor)
+#   - MuJoCo simulation visualization (mujoco_sim)
+#
+# Usage:
+#   dora start config/dataflow_lm3_mujoco.yml
+
+nodes:
+  # ===========================================
+  # MuJoCo Simulation (LM3 6-DOF robot) - Improved
+  # ===========================================
+  - id: mujoco_sim
+    path: ../simulation/lm3_mujoco_node.py
+    inputs:
+      tick: dora/timer/millis/10         # 100 Hz simulation
+      control_input: trajectory_executor/joint_commands
+      command: capture/sim_command       # Control commands (reset, home, safe, get_state)
+    outputs:
+      - joint_positions                  # Current joint angles
+      - joint_velocities                 # Joint velocities
+      - status                           # Simulation status (idle, running, moving, error)
+      - error                            # Error messages (JSON)
+    env:
+      MUJOCO_MODEL_PATH: "F:/2-DORA/2-arm/dora-moveit/dora-control-lebai/config/LM3_base.xml"
+      MUJOCO_RENDER: "true"
+      MUJOCO_DT: "0.01"
+
+  # ===========================================
+  # Planning Scene Manager
+  # ===========================================
+  - id: planning_scene
+    path: ../motion_planner/planning_scene_op.py
+    inputs:
+      robot_state: mujoco_sim/joint_positions
+      scene_command: capture/scene_command
+      tick: dora/timer/millis/5000
+    outputs:
+      - scene_update
+      - command_result
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # OMPL Motion Planner (with collision detection)
+  # ===========================================
+  - id: planner
+    path: ../motion_planner/planner_ompl_with_collision_op.py
+    inputs:
+      plan_request: capture/plan_request
+      scene_update: planning_scene/scene_update
+    outputs:
+      - trajectory
+      - plan_status
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # IK Solver (LM3 6-DOF)
+  # ===========================================
+  - id: ik_solver
+    path: ../ik_solver/ik_op_lm3.py
+    inputs:
+      ik_request: capture/ik_request
+    outputs:
+      - ik_solution
+      - ik_status
+
+  # ===========================================
+  # Trajectory Executor
+  # ===========================================
+  - id: trajectory_executor
+    path: ../trajectory_execution/trajectory_executor.py
+    inputs:
+      trajectory: planner/trajectory
+      joint_positions: mujoco_sim/joint_positions
+      tick: dora/timer/millis/50          # 20 Hz execution
+    outputs:
+      - joint_commands
+      - execution_status
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # LM3 Multi-View Capture Controller
+  # ===========================================
+  - id: capture
+    path: ../workflow/multi_view_capture_node.py
+    env:
+      capture_output_dir: "result_captures"
+      ROBOT_TYPE: "LM3"
+
+    inputs:
+      joint_positions: mujoco_sim/joint_positions
+      execution_status: trajectory_executor/execution_status
+      trajectory: planner/trajectory
+      plan_status: planner/plan_status
+      ik_solution: ik_solver/ik_solution
+      ik_status: ik_solver/ik_status
+    outputs:
+      - robot_state
+      - plan_request
+      - ik_request
+      - scene_command
+      - sim_command                      # Simulation control commands

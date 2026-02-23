@@ -3,8 +3,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 """
-Multi-View Capture Node for GEN72
-==================================
+Multi-View Capture Node
+========================
 Implements multi-viewpoint photography workflow:
 1. Move to target position 1 -> capture
 2. Move to target position 2 -> capture
@@ -20,7 +20,7 @@ import numpy as np
 import pyarrow as pa
 from dataclasses import dataclass
 from dora import Node
-from config.robot_config import GEN72Config
+from config.lm3_config import LM3Config
 
 
 @dataclass
@@ -35,15 +35,19 @@ class MultiViewCaptureNode:
     """Multi-view capture workflow controller"""
 
     def __init__(self):
-        # Capture targets (3 viewpoints) - adjusted for reachability
+        # LM3 6-DOF robot configuration
+        self.robot_config = LM3Config
+        self.num_joints = 6
+
+        # Capture targets (3 viewpoints) - near SAFE_CONFIG for easy reachability
         self.targets = [
-            CaptureTarget("front_view", np.array([0.5, 0.0, 0.4, 3.14, 0.0, 0.0])),      # 主视图：正前方
-            CaptureTarget("top_view", np.array([0.0, 0.0, 0.6, 3.14, 0.0, 1.57])),       # 俯视图：正上方
-            CaptureTarget("left_view", np.array([0.0, 0.5, 0.4, 3.14, 0.0, -1.57])),     # 左视图：左侧
+            CaptureTarget("view1", np.array([-0.299,  -0.13, 0.710, 16, -85, 28])),
+            CaptureTarget("view2", np.array([-.304, -0.169, 0.776, 175, -71, -127])),
+            CaptureTarget("view3", np.array([-0.53,  0.037,  0.549, -97, -21, 179])),
         ]
 
         self.current_target_idx = 0
-        self.current_joints = GEN72Config.SAFE_CONFIG.copy()
+        self.current_joints = self.robot_config.SAFE_CONFIG.copy()
         self.state = "init"  # init -> moving -> capturing -> complete
         self.ik_attempts = 0
         self.max_ik_attempts = 5
@@ -53,7 +57,6 @@ class MultiViewCaptureNode:
         self.waiting_for_joint_update = False
         self.joint_update_wait_ticks = 0
         self.joint_update_max_ticks = 5
-        self.vehicle_ready = False
 
         # Camera configuration (configurable via environment variables)
         # CAPTURE_CAMERA_INDEX: camera index (default 0)
@@ -92,8 +95,8 @@ class MultiViewCaptureNode:
         self._send_robot_state(node, self.current_joints)
         time.sleep(0.5)
 
-        # Don't start first target yet - wait for vehicle_ready signal
-        print("Waiting for vehicle to complete movement...")
+        # Start first target
+        self._next_target(node)
 
         for event in node:
             if event["type"] == "INPUT":
@@ -106,22 +109,11 @@ class MultiViewCaptureNode:
     def _handle_input(self, node: Node, event):
         event_id = event["id"]
 
-        if event_id == "vehicle_ready":
-            if not self.vehicle_ready:
-                self.vehicle_ready = True
-                print("Vehicle movement complete! Starting arm workflow...")
-                # Wait a bit for joint state to stabilize
-                time.sleep(0.5)
-                self._next_target(node)
-        elif event_id == "joint_positions":
+        if event_id == "joint_positions":
             # Update current joints from MuJoCo/Real Robot
             try:
                 joints = event["value"].to_numpy()
-                # Extract arm joints: skip freejoint (7) + wheels (6) = 13
-                if len(joints) >= 20:
-                    self.current_joints = joints[13:20].copy()
-                else:
-                    self.current_joints = joints[:7].copy()
+                self.current_joints = joints[:self.num_joints].copy()
 
                 # If waiting for joint update, increment tick counter
                 if self.waiting_for_joint_update:
@@ -211,8 +203,8 @@ class MultiViewCaptureNode:
             return
 
         try:
-            status_bytes = bytes(data.to_numpy())
-            status = json.loads(status_bytes.decode('utf-8'))
+            status_str = data.to_pylist()[0]
+            status = json.loads(status_str)
 
             # Check if this is the expected execution and it completed
             exec_count = status.get("execution_count", 0)
@@ -273,7 +265,7 @@ class MultiViewCaptureNode:
             print(f"[Capture] Error decoding trajectory: {e}")
             return
 
-        num_joints = GEN72Config.NUM_JOINTS
+        num_joints = self.num_joints
         num_waypoints = metadata.get("num_waypoints", len(traj_flat) // num_joints)
         if num_waypoints <= 0:
             print("[Capture] Invalid trajectory: num_waypoints <= 0")
@@ -380,7 +372,7 @@ class MultiViewCaptureNode:
 
     def _return_to_home(self, node: Node):
         """Return robot to home position after completing all captures"""
-        home_config = GEN72Config.HOME_CONFIG
+        home_config = self.robot_config.HOME_CONFIG
         print(f"Planning return to home: {home_config[:3]}...")
         self._request_plan(node, self.current_joints, home_config)
         # After this completes, the workflow will naturally end

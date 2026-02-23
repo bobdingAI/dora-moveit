@@ -1,0 +1,112 @@
+# LM3 Multi-View Capture + Planning + L-Master Simulation
+# ==========================================================
+# LM3 6-DOF robot multi-view capture workflow with:
+#   - Multi-view control (capture)
+#   - IK solver (ik_solver)
+#   - Collision-aware motion planning (planner)
+#   - L-Master simulation visualization (lmaster_sim)
+#
+# Note: trajectory_executor removed - L-Master handles interpolation
+#
+# Usage:
+#   dora start config/dataflow_lm3_lmaster.yml
+
+nodes:
+  # ===========================================
+  # Lebai L-Master Simulation (LM3 6-DOF robot)
+  # ===========================================
+  - id: lmaster_sim
+    path: ../simulation/lm3_lmaster_node.py
+    inputs:
+      trajectory: planner/trajectory         # Direct trajectory from planner
+      tick: dora/timer/millis/100            # Periodic state updates when idle
+      command: capture/sim_command
+    outputs:
+      - joint_positions                      # Current joint angles
+      - joint_velocities                     # Joint velocities
+      - execution_status                     # Trajectory execution status (JSON)
+      - status                               # Simulation status (idle, moving, error)
+      - error                                # Error messages (JSON)
+    env:
+      LEBAI_IP: "127.0.0.1"
+      LEBAI_SIMULATION: "true"
+      LEBAI_ACCELERATION: "0.6"
+      LEBAI_VELOCITY: "0.3"
+
+  # ===========================================
+  # Planning Scene Manager
+  # ===========================================
+  - id: planning_scene
+    path: ../motion_planner/planning_scene_op.py
+    inputs:
+      robot_state: lmaster_sim/joint_positions
+      scene_command: capture/scene_command
+      tick: dora/timer/millis/5000
+    outputs:
+      - scene_update
+      - command_result
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # OMPL Motion Planner (with collision detection)
+  # ===========================================
+  - id: planner
+    path: ../motion_planner/planner_ompl_with_collision_op.py
+    inputs:
+      plan_request: capture/plan_request
+      scene_update: planning_scene/scene_update
+    outputs:
+      - trajectory
+      - plan_status
+    env:
+      ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # IK Solver (LM3 6-DOF)
+  # ===========================================
+  - id: ik_solver
+    path: ../ik_solver/ik_op_lm3.py
+    inputs:
+      ik_request: capture/ik_request
+    outputs:
+      - ik_solution
+      - ik_status
+
+  # ===========================================
+  # Trajectory Executor (DISABLED - L-Master handles interpolation)
+  # ===========================================
+  # - id: trajectory_executor
+  #   path: ../trajectory_execution/trajectory_executor.py
+  #   inputs:
+  #     trajectory: planner/trajectory
+  #     joint_positions: lmaster_sim/joint_positions
+  #     tick: dora/timer/millis/50          # 20 Hz execution
+  #   outputs:
+  #     - joint_commands
+  #     - execution_status
+  #   env:
+  #     ROBOT_TYPE: "LM3"
+
+  # ===========================================
+  # LM3 Multi-View Capture Controller
+  # ===========================================
+  - id: capture
+    path: ../workflow/multi_view_capture_node.py
+    env:
+      capture_output_dir: "result_captures"
+      ROBOT_TYPE: "LM3"
+
+    inputs:
+      joint_positions: lmaster_sim/joint_positions
+      execution_status: lmaster_sim/execution_status
+      trajectory: planner/trajectory
+      plan_status: planner/plan_status
+      ik_solution: ik_solver/ik_solution
+      ik_status: ik_solver/ik_status
+    outputs:
+      - robot_state
+      - plan_request
+      - ik_request
+      - scene_command
+      - sim_command
